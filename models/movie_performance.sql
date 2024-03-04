@@ -1,6 +1,5 @@
 -- models/movie_performance.sql
 
--- Common Table Expressions (CTEs)
 WITH movie_revenue AS (
     SELECT
         ms.MOVIE_ID,
@@ -14,7 +13,6 @@ WITH movie_revenue AS (
         ms.THEATER_ID
 ),
 
--- Main SELECT statement
 performance_metrics AS (
     SELECT
         m.MOVIE_ID,
@@ -33,6 +31,7 @@ performance_metrics AS (
 -- Final SELECT statement
 SELECT
     pm.*,
-    RANK() OVER (PARTITION BY pm.THEATER_ID ORDER BY pm.avg_tickets_sold DESC) AS ranking_in_theater
+    RANK() OVER (PARTITION BY pm.THEATER_ID ORDER BY pm.avg_tickets_sold DESC) AS ranking_in_theater,
+    ROUND(pm.avg_tickets_sold, 2) AS rounded_avg_tickets_sold
 FROM
     performance_metrics pm
