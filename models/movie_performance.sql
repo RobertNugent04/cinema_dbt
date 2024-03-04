@@ -21,17 +21,17 @@ performance_metrics AS (
         t.THEATER_NAME,
         t.LOCATION,
         t.CAPACITY,
-        mr.avg_tickets_sold
+        ROUND(mr.avg_tickets_sold, 2) AS avg_tickets_sold
     FROM
         RAW_2.CINEMA.MOVIES m
         CROSS JOIN RAW_2.CINEMA.THEATERS t
         LEFT JOIN movie_revenue mr ON m.MOVIE_ID = mr.MOVIE_ID AND t.THEATER_ID = mr.THEATER_ID
 )
 
--- Final SELECT statement
 SELECT
     pm.*,
-    RANK() OVER (PARTITION BY pm.THEATER_ID ORDER BY pm.avg_tickets_sold DESC) AS ranking_in_theater,
-    ROUND(pm.avg_tickets_sold, 2) AS rounded_avg_tickets_sold
+    RANK() OVER (PARTITION BY pm.THEATER_ID ORDER BY pm.avg_tickets_sold DESC) AS ranking_in_theater
 FROM
     performance_metrics pm
+WHERE
+    pm.avg_tickets_sold IS NOT NULL
