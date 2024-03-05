@@ -9,9 +9,21 @@ models:
             - movie_id
             - theater_id
     columns:
-      - name: avg_tickets_sold
+      - name: movie_id
         tests:
           - not_null
+      - name: theater_id
+        tests: 
+          - not_null
+          
+  - name: stg_movies
+    description: ""
+    columns:
+      - name: movie_id
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('movie_performance')
+              field: movie_id
 
-      
           
