@@ -7,7 +7,7 @@
 SELECT
     screening_id,
     movie_id,
-    theater_id,
+    cinema_id,
     screening_date,
     tickets_sold
 

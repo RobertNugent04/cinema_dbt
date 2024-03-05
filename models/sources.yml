@@ -8,8 +8,8 @@ sources:
       tables:
           - name: movies
             description: This model cleans up movie data.
-          - name: theaters
-            description: This model cleans up theater data.
+          - name: cinemas
+            description: This model cleans up cinema data.
           - name: movie_screenings
             description: Shows where and when each movie was played as well as movie metrics.
 

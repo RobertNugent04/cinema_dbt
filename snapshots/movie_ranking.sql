@@ -11,6 +11,6 @@
     )
 }}
 
-select movie_id, theater_id, ranking_in_theater, last_updated from raw_2.dbt_rn.movie_performance
+select movie_id, cinema_id, ranking_in_theater, last_updated from raw_2.dbt_rn.movie_performance
 
 {% endsnapshot %}

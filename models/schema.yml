@@ -7,13 +7,13 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - movie_id
-            - theater_id
+            - cinema_id
     columns:
       - name: movie_id
         description: Foreign key
         tests:
           - not_null
-      - name: theater_id
+      - name: cinema_id
         description: Foreign key
         tests: 
           - not_null
@@ -30,13 +30,13 @@ models:
               to: ref('movie_performance')
               field: movie_id
 
-  - name: stg_theaters
+  - name: stg_cinemas
     columns:
-      - name: theater_id
+      - name: cinema_id
         description: Primary Key
         tests: 
           - not_null
           - unique
           - relationships:
               to: ref('movie_performance')
-              field: theater_id
+              field: cinema_id
