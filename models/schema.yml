@@ -2,7 +2,6 @@ version: 2
 
 models:
   - name: movie_performance
-    description: ""
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -17,13 +16,21 @@ models:
           - not_null
           
   - name: stg_movies
-    description: ""
     columns:
       - name: movie_id
         tests: 
           - not_null
+          - unique
           - relationships:
               to: ref('movie_performance')
               field: movie_id
 
-          
+  - name: stg_theaters
+    columns:
+      - name: theater_id
+        tests: 
+          - not_null
+          - unique
+          - relationships:
+              to: ref('movie_performance')
+              field: theater_id
