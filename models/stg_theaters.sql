@@ -10,4 +10,4 @@ SELECT
     location,
     capacity 
 
-from raw_2.cinema.theaters
+from {{ source('cinema', 'theaters') }}

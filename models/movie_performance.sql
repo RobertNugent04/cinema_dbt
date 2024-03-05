@@ -6,8 +6,8 @@ WITH movie_revenue AS (
         ms.THEATER_ID,
         AVG(ms.TICKETS_SOLD) AS avg_tickets_sold
     FROM
-        RAW_2.CINEMA.MOVIE_SCREENINGS ms
-        LEFT JOIN RAW_2.CINEMA.MOVIES m ON ms.MOVIE_ID = m.MOVIE_ID
+        {{ ref('stg_movie_screenings') }} ms
+        LEFT JOIN {{ ref('stg_movies') }} m ON ms.MOVIE_ID = m.MOVIE_ID
     GROUP BY
         ms.MOVIE_ID,
         ms.THEATER_ID
@@ -23,8 +23,8 @@ performance_metrics AS (
         t.CAPACITY,
         ROUND(mr.avg_tickets_sold, 2) AS avg_tickets_sold
     FROM
-        RAW_2.CINEMA.MOVIES m
-        CROSS JOIN RAW_2.CINEMA.THEATERS t
+        {{ ref('stg_movies') }} m
+        CROSS JOIN {{ ref('stg_theaters') }} t
         LEFT JOIN movie_revenue mr ON m.MOVIE_ID = mr.MOVIE_ID AND t.THEATER_ID = mr.THEATER_ID
 )
 

@@ -11,4 +11,4 @@ SELECT
     screening_date,
     tickets_sold
 
-from raw_2.cinema.movie_screenings
+from {{ source('cinema', 'movie_screenings') }}

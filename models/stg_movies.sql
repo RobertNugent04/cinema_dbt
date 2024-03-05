@@ -12,4 +12,4 @@ SELECT
     director,
     language
 
-from raw_2.cinema.movies
+from {{ source('cinema', 'movies') }}

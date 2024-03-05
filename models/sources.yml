@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+    - name: cinema
+      description: This is a replica of a cinema database
+      database: raw_2
+      schema: cinema
+      tables:
+          - name: movies
+            description: Contains records of movies and their details.
+          - name: theaters
+            description: Contains info on different theaters which the movies are shown at.
+          - name: movie_screenings
+            description: Shows where and when each movie was played.
+
+          
