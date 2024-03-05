@@ -7,7 +7,7 @@
 SELECT
     theater_id,
     theater_name,
-    location,
+    location as theater_location,
     capacity 
 
 from {{ source('cinema', 'theaters') }}

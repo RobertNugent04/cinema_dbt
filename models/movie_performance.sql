@@ -16,10 +16,10 @@ WITH movie_revenue AS (
 performance_metrics AS (
     SELECT
         m.MOVIE_ID,
-        m.TITLE,
+        m.MOVIE_TITLE,
         t.THEATER_ID,
         t.THEATER_NAME,
-        t.LOCATION,
+        t.THEATER_LOCATION,
         t.CAPACITY,
         ROUND(mr.avg_tickets_sold, 2) AS avg_tickets_sold
     FROM

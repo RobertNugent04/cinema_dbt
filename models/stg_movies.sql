@@ -6,7 +6,7 @@
 
 SELECT
     movie_id,
-    title,
+    title as movie_title,
     genre,
     release_year,
     director,
