@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: movie_performance
+    description: ""
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - movie_id
+            - theater_id
+    columns:
+      - name: avg_tickets_sold
+        tests:
+          - not_null
+
+      
+          
