@@ -7,10 +7,10 @@ sources:
       schema: cinema
       tables:
           - name: movies
-            description: Contains records of movies and their details.
+            description: This model cleans up movie data.
           - name: theaters
-            description: Contains info on different theaters which the movies are shown at.
+            description: This model cleans up theater data.
           - name: movie_screenings
-            description: Shows where and when each movie was played.
+            description: Shows where and when each movie was played as well as movie metrics.
 
           
