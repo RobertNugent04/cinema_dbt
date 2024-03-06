@@ -40,3 +40,19 @@ models:
           - relationships:
               to: ref('movie_performance')
               field: cinema_id
+          
+  - name: stg_theaters
+    columns:
+      - name: theater_id
+        description: Primary Key
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('movie_performance')
+              field: theater_id
+      - name: type
+        description: Type of theater
+        tests:
+          - accepted_values:
+              values: ['Standard', 'IMAX']
