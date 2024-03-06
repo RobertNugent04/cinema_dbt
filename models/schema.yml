@@ -13,10 +13,16 @@ models:
         description: Foreign key
         tests:
           - not_null
+          - relationships:
+              to: ref('movie_performance')
+              field: movie_id
       - name: cinema_id
         description: Foreign key
         tests: 
           - not_null
+          - relationships:
+              to: ref('movie_performance')
+              field: cinema_id
           
   - name: stg_movies
     description: This model cleans up movie data
@@ -27,7 +33,7 @@ models:
           - not_null
           - unique
           - relationships:
-              to: ref('movie_performance')
+              to: ref('movie_screenings')
               field: movie_id
 
   - name: stg_cinemas
@@ -38,7 +44,7 @@ models:
           - not_null
           - unique
           - relationships:
-              to: ref('movie_performance')
+              to: ref('movie_screenings')
               field: cinema_id
           
   - name: stg_theaters
@@ -48,10 +54,7 @@ models:
         tests:
           - not_null
           - unique
-          - relationships:
-              to: ref('movie_performance')
-              field: theater_id
-      - name: type
+      - name: theater_type
         description: Type of theater
         tests:
           - accepted_values:
