@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='table'
-  )
-}}
-
 SELECT
     cinema_id,
     cinema_name,

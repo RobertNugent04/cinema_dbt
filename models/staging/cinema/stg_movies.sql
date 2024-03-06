@@ -1,9 +1,3 @@
-{{
-  config(
-    materialized='table'
-  )
-}}
-
 SELECT
     movie_id,
     title as movie_title,
