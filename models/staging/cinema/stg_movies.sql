@@ -1,7 +1,7 @@
 SELECT
     movie_id,
     title as movie_title,
-    genre,
+    genre as movie_genre,
     release_year,
     director,
     language

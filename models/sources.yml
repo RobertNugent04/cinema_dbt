@@ -3,7 +3,7 @@ version: 2
 sources:
     - name: cinema
       description: This is a replica of a cinema database
-      database: raw_2
+      database: raw
       schema: cinema
       tables:
           - name: movies

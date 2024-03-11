@@ -46,16 +46,3 @@ models:
           - relationships:
               to: ref('movie_screenings')
               field: cinema_id
-          
-  - name: stg_theaters
-    columns:
-      - name: theater_id
-        description: Primary Key
-        tests:
-          - not_null
-          - unique
-      - name: theater_type
-        description: Type of theater
-        tests:
-          - accepted_values:
-              values: ['Standard', 'IMAX']

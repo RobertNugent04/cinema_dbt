@@ -4,11 +4,11 @@ with cinemas as(
 
 ),
 
-movies as {
+movies as (
 
     select * from {{ ref('stg_movies') }}
 
-}
+),
 
 final as (
 
@@ -19,9 +19,8 @@ final as (
         c.cinema_name,
         c.cinema_location
     FROM
-        movies m
-    JOIN
-        cinemas c ON m.cinema_id = c.cinema_id
+        movies m,
+        cinemas c
 )
 
 select * from final
