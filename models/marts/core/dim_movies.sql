@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='table'
+    )
+}}
+
 with cinemas as(
 
     select * from {{ ref('stg_cinemas') }}
@@ -19,8 +25,9 @@ final as (
         c.cinema_name,
         c.cinema_location
     FROM
-        movies m,
-        cinemas c
+        movies m
+    JOIN
+        cinemas c ON m.cinema_id = c.cinema_id
 )
 
 select * from final

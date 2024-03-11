@@ -4,6 +4,6 @@ SELECT
     genre as movie_genre,
     release_year,
     director,
-    language
+    language,
 
 from {{ source('cinema', 'movies') }}

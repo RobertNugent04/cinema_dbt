@@ -37,5 +37,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   cinema_dbt:
+    marts:
+      core:
+        +materialized: table
     staging:
       +materialized: view

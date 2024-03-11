@@ -13,8 +13,8 @@ sources:
           - name: customers
             description: This model cleans up customer data
           - name: tickets
-            description: This model cleans us ticket data
-          - name: movie_screenings
-            description: Shows where and when each movie was played as well as movie metrics.
+            description: This model cleans up ticket data
+          - name: screenings
+            description: This model cleans up screening data
 
           
