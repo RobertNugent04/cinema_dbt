@@ -16,5 +16,7 @@ sources:
             description: This model cleans up ticket data
           - name: screenings
             description: This model cleans up screening data
+          - name: transactions
+            description: This model cleans up transaction data
 
           
