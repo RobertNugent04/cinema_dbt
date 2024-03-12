@@ -1,9 +1,8 @@
 SELECT
-    id as ticket_id,
-    movie_name,
+    ticket_id,
+    movie_title,
     price as ticket_price,
-    purchase_date as ticket_purchase_date,
     movie_date,
-    seat_num
+    cinema_id
 
 from {{ source('cinema', 'tickets') }}

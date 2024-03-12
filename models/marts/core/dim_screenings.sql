@@ -19,10 +19,10 @@ movies as (
 final as (
 
     SELECT 
-        s.movie_id,
         s.cinema_id,
         s.screening_date,
-        m.movie_title,
+        movie_title,
+        m.language
 
     FROM 
         screenings s
