@@ -16,6 +16,7 @@ customer_stats as (
     select
         t.customer_id,
         c.name,
+        c.age,
         c.email,
         COUNT(DISTINCT t.movie_title) as num_movies_seen,
         COUNT(DISTINCT t.cinema_id) as num_cinemas_visited,
@@ -28,6 +29,7 @@ customer_stats as (
     group by
         t.customer_id,
         c.name,
+        c.age,
         c.email
 )
 
