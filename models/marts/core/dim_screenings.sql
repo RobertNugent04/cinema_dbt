@@ -19,6 +19,7 @@ movies as (
 final as (
 
     SELECT 
+        s.screening_id,
         s.cinema_id,
         s.screening_date,
         movie_title,

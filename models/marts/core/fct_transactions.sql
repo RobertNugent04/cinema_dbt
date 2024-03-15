@@ -23,10 +23,9 @@ dim_screenings as (
 transaction_tickets as (
     select
         t.ticket_id,
+        ti.screening_id,
         t.customer_id, 
         t.num_bought,
-        ti.movie_title,
-        ti.cinema_id,
         ti.ticket_price,
         t.transaction_date
     from transactions t
@@ -45,7 +44,7 @@ final as (
         tt.transaction_date
     FROM transaction_tickets tt
     JOIN dim_screenings ds 
-    ON tt.movie_title = ds.movie_title AND tt.cinema_id = ds.cinema_id
+    ON tt.screening_id = ds.screening_id
 
 )
 

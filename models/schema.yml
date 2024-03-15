@@ -50,6 +50,14 @@ models:
         tests: 
           - not_null
           - unique
+      - name: screening_id
+        description: Foreign Key 
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref ('stg_screenings')
+              field: screening_id
 
   - name: stg_customers
     description: This model cleans up customer data
@@ -130,20 +138,6 @@ models:
           - relationships:
               to: ref('stg_transactions')
               field: customer_id
-      - name: movie_title
-        description: Foreign key
-        tests: 
-          - not_null
-          - relationships:
-              to: ref('stg_tickets')
-              field: movie_title
-      - name: cinema_id
-        description: Foreign Key
-        tests: 
-          - not_null
-          - relationships:
-              to: ref('stg_tickets')
-              field: cinema_id
             
   - name: dim_movie_performance
     description: Contains movie performance metrics
