@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+    - name: cinema
+      description: This is a replica of a cinema database
+      database: raw
+      schema: cinema
+      tables:
+          - name: movies
+            description: This model cleans up movie data.
+          - name: cinemas
+            description: This model cleans up cinema data.
+          - name: customers
+            description: This model cleans up customer data
+          - name: tickets
+            description: This model cleans up ticket data
+          - name: screenings
+            description: This model cleans up screening data
+          - name: transactions
+            description: This model cleans up transaction data
+
+          

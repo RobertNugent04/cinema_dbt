@@ -1,0 +1,176 @@
+version: 2
+
+models:
+  - name: stg_screenings
+    description: This model cleans up screening data
+    columns:
+      - name: screening_id
+        description: Primary Key
+        tests:
+          - not_null
+          - unique
+      - name: movie_id
+        description: Foreign key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_movies')
+              field: movie_id
+      - name: cinema_id
+        description: Foreign key
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('stg_cinemas')
+              field: cinema_id
+          
+  - name: stg_movies
+    description: This model cleans up movie data
+    columns:
+      - name: movie_id
+        description: Primary key
+        tests: 
+          - not_null
+          - unique
+
+  - name: stg_cinemas
+    description: This model cleans up cinema data
+    columns:
+      - name: cinema_id
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+
+  - name: stg_tickets
+    description: This model cleans up ticket data
+    columns:
+      - name: ticket_id
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+      - name: screening_id
+        description: Foreign Key 
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref ('stg_screenings')
+              field: screening_id
+
+  - name: stg_customers
+    description: This model cleans up customer data
+    columns:
+      - name: customer_id
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+
+  - name: stg_transactions
+    description: This model cleans up transaction data
+    columns:
+      - name: transaction_id
+        description: Primary Key
+        tests:
+          - not_null
+          - unique
+      - name: ticket_id
+        description: Foreign key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_tickets')
+              field: ticket_id
+      - name: customer_id
+        description: Foreign key
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+        
+  - name: dim_screenings
+    description: This model contains data on movie_screenings
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - movie_title
+            - cinema_id
+            - screening_date
+    columns:
+      - name: cinema_id
+        description: Foreign key
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('stg_cinemas')
+              field: cinema_id
+      - name: movie_title
+        tests: 
+          - not_null
+      - name: screening_date
+        tests:
+          - not_null
+
+  - name: fct_transactions
+    description: Fact model with facts relating to the movie screenings and transactions
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ticket_id
+            - cinema_id
+            - movie_title
+            - customer_id
+    columns:
+      - name: ticket_id
+        description: Foreign key
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('stg_transactions')
+              field: ticket_id
+      - name: customer_id
+        description: Foreign key
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('stg_transactions')
+              field: customer_id
+            
+  - name: dim_movie_performance
+    description: Contains movie performance metrics
+    columns:
+      - name: movie_title
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+          - relationships:
+              to: ref('fct_transactions')
+              field: movie_title
+    
+  - name: dim_cinema_performance
+    description: Contains cinema performance metrics
+    columns:
+      - name: cinema_id
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+          - relationships:
+              to: ref('fct_transactions')
+              field: cinema_id
+
+  - name: dim_customer_stats
+    description: Contains statistics about each customer such as how many movie tickets they've bought
+    columns:
+      - name: customer_id
+        description: Primary Key
+        tests: 
+          - not_null
+          - unique
+          - relationships:
+              to: ref('fct_transactions')
+              field: customer_id
