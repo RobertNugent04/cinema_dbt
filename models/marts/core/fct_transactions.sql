@@ -35,6 +35,7 @@ transaction_tickets as (
 final as (
 
     SELECT 
+        ds.screening_id,
         tt.ticket_id,
         ds.cinema_id,
         ds.movie_title,
